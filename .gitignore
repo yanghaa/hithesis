@@ -28,3 +28,8 @@ dist
 *.pdf
 *.toe
 *.xdv
+*.cls
+*.sty
+*.cfg
+*.ist
+*.gz
