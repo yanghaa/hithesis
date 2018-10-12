@@ -119,7 +119,19 @@ CTAN的版本一般会比较落后，但在每年年底会同步为最新版本�
 
 - 生成论文格式文件(第一步要生成 *.cls，*.cfg，*.ist，然后再生成论文)
 
-		latex hithesis.ins
+注意，如果下载最新版本（>= 2018）的texlive或Miktex或Mactex，如果使用自带的模板，可能会出现一些错误，因为自带的版本老。
+查看自带版本的命令是
+
+		texdoc hithesis
+
+   - 如果是Linux/Mac执行 （此处作者没测试过Mac，如遇到问题到谈论区可以问一下热心刀客大侠们，比如陈登泰教授、郭大侠等）
+	
+			latex hithesis.ins
+		
+   - 如果是Windows执行（作者没测试过，如遇问题同上）
+	
+			lualatex hithesis.ins
+
 
 - 生成论文
 
