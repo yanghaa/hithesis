@@ -16,7 +16,7 @@
 %
 % \iffalse
 %<*driver>
-\ProvidesFile{hithesis.dtx}[2019/03/02 2.0.7 Harbin Institute of Technology Thesis Template]
+\ProvidesFile{hithesis.dtx}[2020/03/07 2.1.0 Harbin Institute of Technology Thesis Template]
 \documentclass{ltxdoc}
 \usepackage{dtx-style}
 
@@ -60,9 +60,6 @@
 % \DoNotIndex{\expandafter,\csname,\endcsname,\relax,\protect}
 % \DoNotIndex{\Huge,\huge,\LARGE,\Large,\large,\normalsize}
 % \DoNotIndex{\small,\footnotesize,\scriptsize,\tiny}
-% \DoNotIndex{\normalfont,\bfseries,\slshape,\sffamily,\interlinepenalty}
-% \DoNotIndex{\textbf,\textit,\textsf,\textsc}
-% \DoNotIndex{\hfil,\par,\hskip,\vskip,\vspace,\quad}
 % \DoNotIndex{\centering,\raggedright,\ref}
 % \DoNotIndex{\c@secnumdepth,\@startsection,\@setfontsize}
 % \DoNotIndex{\ ,\@plus,\@minus,\p@,\z@,\@m,\@M,\@ne,\m@ne}
@@ -750,7 +747,7 @@
 % 的 \cs{cite}\marg{key}，而 \cs{inlinecite}\marg{key} 则用来生成正文模式。
 %
 % 关于参考文献模板推荐使用 \BibTeX，关于中文参考文献需要额外增加一个 Entry:
-% \texttt{lang}，将其设置为 \texttt{zh} 用来指示此参考文献为中文，以
+% \texttt{language}，将其设置为 \texttt{zh} 用来指示此参考文献为中文，以
 % 便 \file{hithesis.bst} 处理。如：
 % \begin{latex}
 % @INPROCEEDINGS{cnproceed,
@@ -760,7 +757,7 @@
 %   year      = 2006,
 %   address   = {西安, 中国},
 %   month     = sep,
-%   lang      = "zh",
+%   language      = "zh",
 % }
 %
 % @ARTICLE{cnarticle,
@@ -770,7 +767,7 @@
 %   PAGES   = "260--266",
 %   VOLUME  = "224",
 %   YEAR    = "1800",
-%   LANG    = "zh",
+%   LANGUAGE    = "zh",
 % }
 % \end{latex}
 %
@@ -941,7 +938,7 @@
 %<cls>\NeedsTeXFormat{LaTeX2e}[1999/12/01]
 %<cls>\ProvidesClass{hithesis}
 %<cfg>\ProvidesFile{hithesis.cfg}
-%<cls|cfg>[2019/03/02 2.0.7 Harbin Institute of Technology Thesis Template]
+%<cls|cfg>[2020/03/07 2.1.0 Harbin Institute of Technology Thesis Template]
 %    \end{macrocode}
 %
 % \subsection{定义选项}
@@ -962,6 +959,23 @@
   \hit@masterfalse
   \hit@doctorfalse
   \expandafter\csname hit@#1true\endcsname}
+%    \end{macrocode}
+% 此处设置校区，没有明确给出威海或者深圳时候，默认为哈尔滨校区。
+% \changes{v2.0.0}{2018/6/14}{此处添加geometry选项}
+%    \begin{macrocode}
+\newif\ifhit@shenzhen
+\newif\ifhit@weihai
+\newif\ifhit@harbin
+\define@key{hit}{campus}{%
+  \hit@shenzhenfalse
+  \hit@weihaifalse
+  \hit@harbinfalse
+  \expandafter\csname hit@#1true\endcsname}
+\ifhit@weihai\relax\else
+\ifhit@shenzhen\relax\else
+\hit@harbintrue
+\fi
+\fi
 %    \end{macrocode}
 %    设置版芯，由于窝工版芯歧义。
 % \changes{v2.0.0}{2018/6/14}{此处添加geometry选项}
@@ -1023,6 +1037,11 @@
 % 是否使用右开页（默认否）。
 %    \begin{macrocode}
 \DeclareBoolOption[false]{openright}
+%    \end{macrocode}
+% \changes{v2.0.10}{2019/6/25}{此处添加是否为提交图书馆电子版}
+% 是否为提交图书馆电子版。
+%    \begin{macrocode}
+\DeclareBoolOption[false]{library}
 %    \end{macrocode}
 % 图题和标题最后一行是否居中对其（默认是，非规范要求）。
 % \changes{v1.0.6}{2017/10/25}{此处更改了选项的名称}
@@ -1144,6 +1163,11 @@
 %    \begin{macrocode}
 \RequirePackage{amsmath}
 %    \end{macrocode}
+% 定理类环境宏包，其中 \pkg{amsmath} 选项用来兼容 \AmSTeX\ 的宏包
+%    \begin{macrocode}
+\RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
+\RequirePackage{amssymb}
+%    \end{macrocode}
 % \pkg{newtx} 设置 Times New Roman，Helvetica。
 %    \begin{macrocode}
 \RequirePackage[defaultsups]{newtxtext}
@@ -1195,10 +1219,7 @@
 %    \begin{macrocode}
 \RequirePackage{CJKfntef}
 %    \end{macrocode}
-% 定理类环境宏包，其中 \pkg{amsmath} 选项用来兼容 \AmSTeX\ 的宏包
-%    \begin{macrocode}
-\RequirePackage[amsmath,thmmarks,hyperref]{ntheorem}
-%    \end{macrocode}
+
 % 表格控制
 %    \begin{macrocode}
 \RequirePackage{longtable}
@@ -1303,7 +1324,6 @@
 %    \begin{macrocode}
 \RequirePackage{changepage}
 \RequirePackage{multicol}
-\RequirePackage{amssymb}
 \RequirePackage[below]{placeins}%允许上一个section的浮动图形出现在下一个section的开始部分,还提供\FloatBarrier命令,使所有未处理的浮动图形立即被处理
 \RequirePackage{flafter}       % 使得所有浮动体不能被放置在其浮动环境之前，以免浮动体在引述它的文本之前出现.
 \RequirePackage{multirow}       %使用Multirow宏包，使得表格可以合并多个row格
@@ -1343,8 +1363,11 @@ delim_1 "\\hspace*{\\fill}"
 % \begin{macro}{\cleardoublepage}
 % 对于 \textsl{openright} 选项，必须保证章首页右开，且如果前章末页无内容须
 % 清空其页眉页脚。
+% 如果\textsl{library}为真，则强制设置\textsl{openright}为真。
+% \changes{v2.0.10}{2019/6/25}{添加\textsl{openright}和\textsl{library}逻辑}
 %    \begin{macrocode}
 %<*cls>
+\ifhit@library\hit@openrightfalse\else\relax\fi
 \let\hit@cleardoublepage\cleardoublepage
 \newcommand{\hit@clearemptydoublepage}{%
   \clearpage{\pagestyle{hit@empty}\hit@cleardoublepage}
@@ -1353,8 +1376,6 @@ delim_1 "\\hspace*{\\fill}"
 %    \end{macrocode}
 % \end{macro}
 % \begin{macro}{\frontmatter}
-% \begin{macro}{\mainmatter}
-% \begin{macro}{\backmatter}
 % 我们的单面和双面模式与常规的不太一样。
 %    \begin{macrocode}
 \renewcommand\frontmatter{%
@@ -1363,25 +1384,36 @@ delim_1 "\\hspace*{\\fill}"
   \pagenumbering{Roman}
   \pagestyle{hit@empty}
 }
-
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\mainmatter}
+% 根据打印店（伪官方）的猛虎式操作，\cs{mainmatter}命令的逻辑是，双面打印时第一章必须在奇数页
+% （不看文档别怪我）。
+% \changes{v2.0.11}{2018/06/27}{设置第一章必须在奇数页}
+%    \begin{macrocode}
 \renewcommand\mainmatter{%
   \ifhit@tocblank%
   \addtocontents{toc}{\vspace{\baselineskip}} %规范中并没有这一要求，此处不应该加
   \addtocontents{toe}{\vspace{\baselineskip}}
   \fi%
-  \ifhit@openright\cleardoublepage\else\clearpage\fi
+  \ifhit@doctor%
+    \ifhit@library\clearpage\else\cleardoublepage\fi
+    \else%
+    \clearpage
+  \fi%
   \@mainmattertrue
   \pagenumbering{arabic}
   \pagestyle{hit@headings}
 }
-
+%    \end{macrocode}
+% \end{macro}
+% \begin{macro}{\backmatter}
+%    \begin{macrocode}
 \renewcommand\backmatter{%
   \ifhit@openright\cleardoublepage\else\clearpage\fi
   \@mainmattertrue}
 %</cls>
 %    \end{macrocode}
-% \end{macro}
-% \end{macro}
 % \end{macro}
 %
 % \subsubsection{字体}
@@ -1432,6 +1464,7 @@ delim_1 "\\hspace*{\\fill}"
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\dachu}
 % \begin{macro}{\chuhao}
 % \begin{macro}{\xiaochu}
 % \begin{macro}{\yihao}
@@ -1452,6 +1485,7 @@ delim_1 "\\hspace*{\\fill}"
 % \begin{macro}{\bahao}
 % 一组字号定义。
 %    \begin{macrocode}
+\hit@def@fontsize{dachu}{58bp}
 \hit@def@fontsize{chuhao}{42bp}
 \hit@def@fontsize{xiaochu}{36bp}
 \hit@def@fontsize{yihao}{26bp}
@@ -1472,6 +1506,7 @@ delim_1 "\\hspace*{\\fill}"
 \hit@def@fontsize{bahao}{5bp}
 %</cls>
 %    \end{macrocode}
+% \end{macro}
 % \end{macro}
 % \end{macro}
 % \end{macro}
@@ -1520,14 +1555,42 @@ delim_1 "\\hspace*{\\fill}"
   \fancyhf{}
   \ifhit@doctor
   \fancyhead[CO]{\songti\xiaowu[0]\leftmark}
-  \fancyhead[CE]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname}%
+%    \end{macrocode}
+% 添加一校三区的学校名
+% \changes{v2.1.0}{2020/3/7}{此处添加校区选项}
+%    \begin{macrocode}
+  \ifhit@harbin
+  \fancyhead[CE]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname}
+  \fi
+  \ifhit@shenzhen
+  \fancyhead[CE]{\songti\xiaowu[0]\hit@cschoolname\hit@shenzhencampus\hit@cdegree\hit@cthesisname}
+  \fi
+  \ifhit@weihai
+  \fancyhead[CE]{\songti\xiaowu[0]\hit@cschoolname\hit@weihaicampus\hit@cdegree\hit@cthesisname}
+  \fi
   \else
   \ifhit@master
+  \ifhit@harbin
   \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@cdegree\hit@cthesisname}
+  \fi
+  \ifhit@shenzhen
+  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@shenzhencampus\hit@cdegree\hit@cthesisname}
+  \fi
+  \ifhit@weihai
+  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@weihaicampus\hit@cdegree\hit@cthesisname}
+  \fi
   \fi
   \fi
   \ifhit@bachelor
-  \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@bachelor@cxuewei\hit@bachelor@cthesisname}%
+    \ifhit@harbin
+    \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@bachelor@cxuewei\hit@bachelor@cthesisname}%
+    \fi
+    \ifhit@shenzhen
+    \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@shenzhencampus\hit@bachelor@cxuewei\hit@bachelor@cthesisname}%
+    \fi
+    \ifhit@weihai
+    \fancyhead[C]{\songti\xiaowu[0]\hit@cschoolname\hit@weihaicampus\hit@bachelor@cxuewei\hit@bachelor@cthesisname}%
+    \fi
   \fancyfoot[C]{\xiaowu\if@mainmatter\ifhit@bsmainpagenumberline-~\thepage~-\else\thepage\fi\else\ifhit@bsfrontpagenumberline-~\thepage~-\else\thepage\fi\fi}
   \ifhit@bsheadrule
   \renewcommand{\headrule}{
@@ -1682,13 +1745,15 @@ delim_1 "\\hspace*{\\fill}"
 %    \end{macrocode}
 % \subsubsection{浮动对象以及表格}
 % \label{sec:float}
-% 设置浮动对象和文字之间的距离
+% 设置浮动对象和文字之间的距离，由于规范中没有明确规定，根据经验，设置成正文汉字
+% 高度。
 % \changes{v1.0.9}{2018/01/07}{修正float垂直间距bug}
+% \changes{v2.0.9}{2019/06/24}{修正float垂直间距bug}
 %    \begin{macrocode}
 %<*cls>
 \setlength{\intextsep}{\ifhit@glue 8.50398bp \@plus 2.83465bp \@minus 0bp\else 8.50398bp\fi}
 \setlength{\textfloatsep}{\ifhit@glue 8.50398bp \@plus 2.83465bp \@minus 0bp\else 8.50398bp\fi}
-\setlength{\floatsep}{\ifhit@glue 20.50398bp \@plus 2.83465bp \@minus 0bp\else 20.50398bp\fi}
+\setlength{\floatsep}{\ifhit@glue 12bp \@plus 2.83465bp \@minus 0bp\else 12bp\fi}
 %    \end{macrocode}
 %    此处设置float在p选项时间隔，此处不设置\cs{@fptop}和\cs{@fpbot}以确保居中。
 % \changes{v1.0.12}{2018/04/03}{修正float为p状态时默认不居中bug}
@@ -2193,6 +2258,14 @@ delim_1 "\\hspace*{\\fill}"
 \def\hit@bachelor@cxuewei{本科}
 \def\hit@bachelor@cthesisname{毕业设计（论文）}
 \def\hit@bachelor@caffiltitle{院（系）}
+%</cfg>
+%    \end{macrocode}
+% 此处添加深圳校区设置
+% \changes{v2.1.0}{2020/3/7}{此处添加校区选项}
+%    \begin{macrocode}
+%<*cfg>      
+\def\hit@bachelor@caffiltitlesz{学院}
+\def\hit@bachelor@caffiltitlewh{学院}
 \def\hit@bachelor@cstudentidtitle{学号}
 \def\hit@bachelor@cmajortitle{专业}
 \def\hit@bachelor@csupervisortitle{指导教师}
@@ -2200,6 +2273,14 @@ delim_1 "\\hspace*{\\fill}"
 \def\hit@bachelor@cstudenttitle{学生}
 \def\hit@cthesisname{学位论文}
 \def\hit@cschoolname{哈尔滨工业大学}
+%</cfg>
+%    \end{macrocode}
+% 此处添加深圳校区设置
+% \changes{v2.1.0}{2020/3/7}{此处添加校区选项}
+%    \begin{macrocode}
+%<*cfg>      
+\def\hit@shenzhencampus{（深圳）}
+\def\hit@weihaicampus{（威海）}
 \def\hit@cschoolnametitle{授予学位单位}
 \def\hit@cdatetitle{答辩日期}
 \def\hit@caffiltitle{所在单位}
@@ -2258,7 +2339,7 @@ delim_1 "\\hspace*{\\fill}"
 本人郑重声明：此处所提交的学位论文《\hit@ctitle》，是本人在导师指导下，在哈尔滨工业大学攻读学位期间独立进行研究工作所取得的成果，且学位论文中除已标注引用文献的部分外不包含他人完成或已发表的研究成果。对本学位论文的研究工作做出重要贡献的个人和集体，均已在文中以明确方式注明。}
 \newcommand{\hit@datefill}{\hspace{2.5em}年\hspace{1.5em}月\hspace{1.5em}日}
 \newcommand{\hit@publication@ctitle}{攻读\hit@cxuewei 学位期间发表的论文及其他成果}
-\newcommand{\hit@publication@etitle}{Papers published in the period of PH.D. education}
+\newcommand{\hit@publication@etitle}{Papers published in the period of Ph.D. education}
 \def\hit@index@etitle{Index}
 \def\hit@hi{嗨！thesis}
 \def\hit@cbraceleft{（}
@@ -2294,11 +2375,35 @@ delim_1 "\\hspace*{\\fill}"
   \begin{center}
     \setlength{\hit@title@width}{4em}
     \heiti\xiaosi
-      \begin{tabular}{rc}
-	{\hit@put@title{\hit@bachelor@caffiltitle}\hit@title@csep} & \hit@caffil\\[14pt]
+%    \end{macrocode}
+% 此处深圳校区竟然是左对齐。另外，院系名称也有点不一样。
+% \changes{v2.1.0}{2020/3/7}{此处添加校区选项}
+%    \begin{macrocode}
+    \ifhit@shenzhen%
+      \begin{tabular}{rl}%
+    \else%
+      \begin{tabular}{rc}%
+    \fi%
+        {\hit@put@title{%
+          \ifhit@harbin%
+            \hit@bachelor@caffiltitle%
+          \else%
+            \ifhit@shenzhen%
+              \hit@bachelor@caffiltitlesz%
+            \else%
+              \ifhit@weihai%
+                \hit@bachelor@caffiltitlewh%
+              \fi%
+            \fi%
+          \fi%
+        }\hit@title@csep} & \hit@caffil\\[14pt]
 	{\hit@put@title{\hit@bachelor@cstudentidtitle}\hit@title@csep} & \hit@cstudentid
     \end{tabular}
-      \begin{tabular}{rc}
+    \ifhit@shenzhen%
+      \begin{tabular}{rl}%
+    \else%
+      \begin{tabular}{rc}%
+    \fi%
 	{\hit@put@title{\hit@bachelor@cmajortitle}\hit@title@csep} & \hit@csubject\\[14pt]
 	{\hit@put@title{\hit@bachelor@csupervisortitle}\hit@title@csep} &  \hit@csupervisor
       \end{tabular}
@@ -2311,11 +2416,22 @@ delim_1 "\\hspace*{\\fill}"
 % 此处本科生使用了\hit\ 的logo且本科生论文标题使用了华文新魏字体，为了方便使用，
 % 此处使用了矢量化图片作为输入。
 % \changes{v1.0.11}{2018/03/07}{更改的中文标题，根据反馈，在封面中标题需要自由
+% \changes{v2.1.0}{2020/3/7}{此处添加校区选项}
 % 换行且不能影响到原创性声明。此处额外设置了一个变量ctitlecover。}
 %    \begin{macrocode}
 \newcommand{\hit@second@titlepage@bachelor}{
   \vspace*{0.8cm}
-  \centering\includegraphics[width=6.2cm]{hitlogo}
+  \ifhit@harbin%
+  \centering{\includegraphics[width=6.2cm]{hitlogo}}
+  \else%
+  \ifhit@shenzhen%
+  \centering{\includegraphics[width=6.2cm]{hitlogo}~~\raisebox{0.2em}{\kaishu\yihao\hit@shenzhencampus}}
+  \else%
+  \ifhit@weihai%
+  \centering{\includegraphics[width=6.2cm]{hitlogo}~~\raisebox{0.2em}{\kaishu\yihao\hit@shenzhencampus}}
+  \fi%
+  \fi%
+  \fi%
   \vspace{1.3cm}
   \begin{center}
     \centering\includegraphics[width=10.5cm]{bthesistitle}
@@ -2454,18 +2570,21 @@ delim_1 "\\hspace*{\\fill}"
   \phantomsection
   \pdfbookmark[0]{\hit@ctitle}{ctitle}
   \xiaosi[1]%
+%    \end{macrocode}
+% \changes{v2.0.10}{2019/6/25}{此处添加提交图书馆电子版的逻辑}
+%    \begin{macrocode}
   \begin{titlepage}
     \hit@first@titlepage
-    \cleardoublepage
+    \ifhit@library\clearpage\else\cleardoublepage\fi
     \hit@second@titlepage
-    \cleardoublepage
+    \ifhit@library\clearpage\else\cleardoublepage\fi
     \ifhit@bachelor
     \relax
     \else
     \phantomsection
     \pdfbookmark[0]{\hit@etitle}{etitle}
     \hit@engcover
-    \cleardoublepage
+    \ifhit@library\clearpage\else\cleardoublepage\fi
     \fi
   \end{titlepage}
   \normalsize
@@ -2571,7 +2690,11 @@ delim_1 "\\hspace*{\\fill}"
       \advance\leftskip\@tempdima
       \hskip -\leftskip
       % numberline is called here, and it uses \@tempdima
-      {\ifhit@bachelor\sffamily\else\csname hit@toc@font\endcsname\fi\heiti #1}
+%    \end{macrocode}
+% 修改本科生论文目录格式
+% \changes{v2.0.8}{2017/06/15}{修改本科生论文目录格式（感谢QQ:嬴政　同学）}
+%    \begin{macrocode}
+      {\ifhit@bachelor\rmfamily\else\csname hit@toc@font\endcsname\fi\heiti #1}
       \leaders\hbox{$\m@th\mkern \@dotsep mu\hbox{.}\mkern \@dotsep mu$}\hfill
       \nobreak{\normalfont\normalcolor #2}\par
       \penalty\@highpenalty
@@ -5313,3 +5436,4 @@ end restore
 %  TeX-master: t
 %  End:
 % \fi
+                                                                                                                                                                                                   
