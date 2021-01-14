@@ -1,19 +1,18 @@
 # hithesis
 # 哈尔滨工业大学LaTeX论文模板
 
+<!-- [![docker-build-TinyTeX-hithesis](https://github.com/dustincys/hithesis/workflows/docker-build-TinyTeX-hithesis/badge.svg?branch=master)](https://github.com/dustincys/hithesis/actions?query=workflow%3Adocker-build-TinyTeX-hithesis) -->
+<!-- [![TinyTeX](https://github.com/dustincys/hithesis/workflows/TinyTeX/badge.svg?branch=master)](https://github.com/dustincys/hithesis/actions?query=workflow%3ATinyTeX) -->
+<!-- [![MiKTeX](https://github.com/dustincys/hithesis/workflows/MiKTeX/badge.svg?branch=master)](https://github.com/dustincys/hithesis/actions?query=workflow%3AMiKTeX) -->
+<!-- [![MacTeX](https://github.com/dustincys/hithesis/workflows/MacTeX/badge.svg?branch=mac)](https://github.com/dustincys/hithesis/actions?query=branch%3Amac)  -->
+<!-- [![TeXLive](https://github.com/dustincys/hithesis/workflows/TeXLive/badge.svg)](https://github.com/dustincys/hithesis/actions?query=workflow%3ATeXLive) -->
+
 [![dockerhub-TinyTeX-hithesis](https://github.com/dustincys/hithesis/workflows/dockerhub-TinyTeX-hithesis/badge.svg?branch=master)](https://github.com/dustincys/hithesis/actions?query=workflow%3Adockerhub-TinyTeX-hithesis)
-[![docker-build-TinyTeX-hithesis](https://github.com/dustincys/hithesis/workflows/docker-build-TinyTeX-hithesis/badge.svg?branch=master)](https://github.com/dustincys/hithesis/actions?query=workflow%3Adocker-build-TinyTeX-hithesis)
-
-[![TinyTeX](https://github.com/dustincys/hithesis/workflows/TinyTeX/badge.svg?branch=master)](https://github.com/dustincys/hithesis/actions?query=workflow%3ATinyTeX)
-[![MiKTeX](https://github.com/dustincys/hithesis/workflows/MiKTeX/badge.svg?branch=master)](https://github.com/dustincys/hithesis/actions?query=workflow%3AMiKTeX)
-[![MacTeX](https://github.com/dustincys/hithesis/workflows/MacTeX/badge.svg?branch=mac)](https://github.com/dustincys/hithesis/actions?query=branch%3Amac) 
-[![TeXLive](https://github.com/dustincys/hithesis/workflows/TeXLive/badge.svg)](https://github.com/dustincys/hithesis/actions?query=workflow%3ATeXLive)
-
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/dustincys/hithesis)](https://github.com/dustincys/hithesis/releases) 
 [![GitHub release (latest by date)](https://img.shields.io/github/v/release/dustincys/hithesis)](https://github.com/dustincys/hithesis/releases)
 [![CTAN](https://img.shields.io/ctan/v/hithesis)](https://ctan.org/pkg/hithesis)
-[![GitHub All Releases](https://img.shields.io/github/downloads/dustincys/hithesis/total)](https://github.com/dustincys/hithesis/tags) 
 [![GitHub repo size](https://img.shields.io/github/repo-size/dustincys/hithesis)](https://yanshuo.name/hithesis) 
+<!-- [![GitHub All Releases](https://img.shields.io/github/downloads/dustincys/hithesis/total)](https://github.com/dustincys/hithesis/tags)  -->
 
 
 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/"><img alt="知识共享许可协议" style="border-width:0" src="https://i.creativecommons.org/l/by-nc/4.0/88x31.png" /></a><br /><span xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">hithesis</span> 由 <a xmlns:cc="http://creativecommons.org/ns#" href="https://github.com/dustincys/hithesis" property="cc:attributionName" rel="cc:attributionURL">https://github.com/dustincys/hithesis</a> 采用 <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/">知识共享 署名-非商业性使用 4.0 国际 许可协议</a>进行许可。<br />基于<a xmlns:dct="http://purl.org/dc/terms/" href="https://github.com/dustincys/hithesis" rel="dct:source">https://github.com/dustincys/hithesis</a>上的作品创作。
@@ -52,7 +51,7 @@ hithesis 已收录在[CTAN](https://ctan.org/pkg/hithesis)中，用户安装TeXL
 
 校区|学位|撰写规范|Word排版范例|更新日期
 -|-|-|-|-
-深圳|硕士/英文版硕士暂行规定|[哈工大（深圳）学术规范及硕士学位论文撰写文件包（2019年版）](http://due.hitsz.edu.cn/info/1211/1859.htm)|同左|2019-04-16
+深圳|硕士/英文版硕士暂行规定|[哈工大（深圳）学术规范及硕士学位论文撰写文件包（2020年版）](http://due.hitsz.edu.cn/info/1211/1859.htm)|同左|2020-10-23
 深圳|博士开题|-|[博士学位开题报告模板](http://due.hitsz.edu.cn/info/1252/1865.htm)|2018-07-31
 深圳|博士中期|-|[博士学位论文中期检查报告](http://due.hitsz.edu.cn/info/1253/1860.htm)|2018-07-31
 深圳|博士毕业|[哈尔滨工业大学研究生学位论文撰写规范（2011版）](http://due.hitsz.edu.cn/info/1243/1776.htm)|[哈尔滨工业大学研究生学位论文书写范例（2011版）](http://due.hitsz.edu.cn/info/1243/1777.htm)|2018-07-31
@@ -72,8 +71,9 @@ hithesis 已收录在[CTAN](https://ctan.org/pkg/hithesis)中，用户安装TeXL
 	- 在[规范](http://hitgs.hit.edu.cn/aa/fd/c3425a109309/page.htm)中规定和[研究生word排版范例](http://hitgs.hit.edu.cn/ab/1f/c3425a109343/page.htm)的中文目录中出现的“ABSTRACT”和“Abstract”的写法歧义（规格严格功夫到家！！！）。
 	- [《哈尔滨工业大学本科生毕业论文撰写规范》](http://jwc.hit.edu.cn/2014/0504/c4305a116176/page.htm)与[本科生论文word排版范例](http://jwc.hit.edu.cn/2566/list.htm)中章节标题是否加粗有歧义
 	- 本科生论文官方模板的页眉页码格式混乱，有的有页码横线有的没有，有的有页眉有的没有。
+	- 规范规定一行33个字，Word模板34个字。
 
-- word模板自身歧义：
+- Word模板自身歧义：
 	- Contradictory font size of section title in English version of Word template
 
 ### hithesis 支持
@@ -97,6 +97,7 @@ hithesis 已收录在[CTAN](https://ctan.org/pkg/hithesis)中，用户安装TeXL
 - [x] 威海校区硕士毕业设计中期
 - [x] 威海校区博士毕业设计开题
 - [x] 威海校区博士毕业设计中期
+- [x] 威海校区博后出站报告
 - [x] 深圳校区硕士毕业论文
 - [x] 深圳校区本科毕业设计
 - [x] 深圳校区博士毕业论文
@@ -106,6 +107,7 @@ hithesis 已收录在[CTAN](https://ctan.org/pkg/hithesis)中，用户安装TeXL
 - [x] 深圳校区硕士毕业设计中期
 - [x] 深圳校区博士毕业设计开题
 - [x] 深圳校区博士毕业设计中期
+- [x] 深圳校区博后出站报告
 - [x] English version of thesis
 
 ## 模板特点
@@ -230,7 +232,11 @@ TinyTeX|自身就是最Mini的安装包|Linux/Mac|否|[install-TinyTeX_hithesis.
 
 		docker pull dustincys/tinytex-hithesis:latest
 
-- 第二步，在hithesis毕业论文文件夹hitbook或报告文件夹report下执行以下命令进行编译
+- 第二步，在hithesis根目录下执行抽取格式
+
+		docker run --rm -i  -v $(pwd):/home/runner dustincys/tinytex-hithesis:latest latex hithesis.ins
+
+- 第三步，在hithesis毕业论文文件夹hitbook或报告文件夹report下执行以下命令进行编译
 
 		docker run --rm -i  -v $(pwd):/home/runner dustincys/tinytex-hithesis:latest make thesis
 
@@ -240,7 +246,8 @@ TinyTeX|自身就是最Mini的安装包|Linux/Mac|否|[install-TinyTeX_hithesis.
 
 		docker run --rm -i  -v $(pwd):/home/runner dustincys/tinytex-hithesis:latest make doc
 
-使用Docker可以使本地安装不再受平台限制、随时部署，不再受bug、字体、环境变量困扰。诸位上仙、大侠、刀客、头领可以任性地、随意地、抽象地、写实地设置别名，最终完成羽化、飞升
+编译过程可以参照下一节模板的编译方法。
+使用Docker可以使本地安装不再受平台限制、随时部署，不再受bug、字体、环境变量困扰。诸位上仙、大侠、刀客、头领可以任性地、随意地、抽象地、写实地设置别名，最终完成羽化、飞升。
 
 	alias xelatex='docker run --rm -i  -v $(pwd):/home/runner dustincys/tinytex-hithesis:latest xelatex'
 	alias splitindex='docker run --rm -i  -v $(pwd):/home/runner dustincys/tinytex-hithesis:latest splitindex'
@@ -374,6 +381,10 @@ Please contact me if I missed to add any sponsor. Thank you so much.
 |------------|-----------|----------|
 | 2020-05-06 | Li Liming |          |
 | 2020-06-16 | 航明      |          |
-| 2020-06-28 | ×鑫      |          |
+| 2020-06-28 | *鑫      |          |
 | 2020-07-20 | CR        | Wechat |
+| 2020-08-13 | d*g |  |
 | 2020-09-11 | **扬     |  |
+| 2020-11-03 | **宝 |  |
+| 2020-11-05 | **庭 |  |
+| 2021-01-04 | **杰    |  |
